@@ -17,5 +17,7 @@ class FormCadastro : AppCompatActivity() {
         val toolbar = binding.toolbarCadastro
         toolbar.setBackgroundColor(getColor(R.color.white))
         toolbar.setNavigationIcon(getDrawable(R.drawable.ic_netflix_official_logo))
+
+
     }
 }
