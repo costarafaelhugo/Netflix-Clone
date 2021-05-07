@@ -3,7 +3,10 @@ package com.hugorafaelcosta.netflixclone
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.hugorafaelcosta.netflixclone.databinding.ActivityFormCadastroBinding
 
 class FormCadastro : AppCompatActivity() {
@@ -47,6 +50,15 @@ class FormCadastro : AppCompatActivity() {
                 }
             }
         }.addOnFailureListener{
+            var erro = it
+
+            when{
+                erro is FirebaseAuthWeakPasswordException -> mensagem_erro.text = "Digite uma senha om no minimo 6 caracteres"
+                erro is FirebaseAuthUserCollisionException -> mensagem_erro.text = "Esta conta já foi cadastrada"
+                erro is FirebaseNetworkException-> mensagem_erro.text = "Sem conecão com a internet"
+                else -> mensagem_erro.text = "Erro ao cadastrar usuário"
+            }
+
             mensagem_erro.text = "Erro ao cadastrar usuário"
         }
 
