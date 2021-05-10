@@ -31,7 +31,7 @@ class FormLogin : AppCompatActivity() {
             val senha = binding.editSenha.text.toString()
             val mensagem_erro = binding.mensagemErro
             if(email.isEmpty() || senha.isEmpty()){
-                mensagem_erro.setText("Preencha todos os campos!")
+                mensagem_erro.text = "Preencha todos os campos!"
             }else{
                 AutenticarUsuario()
             }
@@ -54,9 +54,9 @@ class FormLogin : AppCompatActivity() {
             var erro = it
 
             when{
-                erro is FirebaseAuthInvalidCredentialsException -> mensagem_erro.setText("E-mail ou senha estão incorretos")
-                erro is FirebaseNetworkException-> mensagem_erro.setText("Sem conexão com a internet")
-                else -> mensagem_erro.setText("Erro ao logar usuário")
+                erro is FirebaseAuthInvalidCredentialsException -> mensagem_erro.text = "E-mail ou senha estão incorretos"
+                erro is FirebaseNetworkException-> mensagem_erro.text = "Sem conexão com a internet"
+                else -> mensagem_erro.text = "Erro ao logar usuário"
 
             }
 
